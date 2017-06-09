@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect()
+      socket.on('status', (data) => {
+        console.log(data)
+        socket.emit('my other event', { my: 'data' })
+      })
+      socket.on('clients', (clients) => {
+        console.log('clients', clients)
+      })
+      socket.on('bombs', (bombs) => {
+        console.log('bombs', bombs)
+      })
+      socket.on('targets', (targets) => {
+        console.log('targets', targets)
+      })
+    </script>
+  </body>
+</html>
