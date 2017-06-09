@@ -12,14 +12,17 @@
         console.log(data)
         socket.emit('my other event', { my: 'data' })
       })
-      socket.on('clients', (clients) => {
-        console.log('clients', clients)
-      })
-      socket.on('bombs', (bombs) => {
-        console.log('bombs', bombs)
-      })
-      socket.on('targets', (targets) => {
-        console.log('targets', targets)
+      // socket.on('clients', (clients) => {
+      //   console.log('clients', clients)
+      // })
+      // socket.on('bombs', (bombs) => {
+      //   console.log('bombs', bombs)
+      // })
+      // socket.on('targets', (targets) => {
+      //   console.log('targets', targets)
+      // })
+      socket.on('all', (all) => {
+        console.log('all', all)
       })
     </script>
   </body>

@@ -6,6 +6,11 @@ let randomData = require('./randomData.js')
 server.listen(4605)
 
 let connections = []
+let all = {
+  clients: [],
+  bombs: [],
+  targets: []
+}
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
@@ -19,6 +24,9 @@ setInterval(() => {
   randomData.changeClients()
   randomData.changeBombs()
   randomData.changeTargets()
+  all['clients'] = randomData.clients
+  all['bombs'] = randomData.bombs
+  all['targets'] = randomData.targets
 }, 1000)
 
 io.on('connection', (socket) => {
@@ -27,6 +35,7 @@ io.on('connection', (socket) => {
   io.emit('status', { status: 'Connected', connections: connections.length })
 
   setInterval(() => {
+    io.emit('all', all)
     io.emit('clients', randomData.clients)
     io.emit('bombs', randomData.bombs)
     io.emit('targets', randomData.targets)
