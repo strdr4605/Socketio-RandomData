@@ -34,13 +34,6 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', (data) => {
     connections.splice(connections.indexOf(socket), 1)
-
-    if (connections.length == 0) {
-      randomData.clients = []
-      randomData.bombs = []
-      randomData.targets = []
-    }
-
     io.emit('status', { status: 'Disconnected', connections: connections.length })
     console.log('Disconnected: %s sockets connected', connections.length)
   })
